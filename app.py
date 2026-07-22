@@ -1,7 +1,7 @@
 import os
-from flask import Flask, render_template, request, jsonify, session, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,session, flash,jsonify
 from dotenv import load_dotenv
-from database import register_user, verify_user, add_vault_entry, get_vault_entries
+from database import init_db,register_user, verify_user, add_vault_entry, get_vault_entries, delete_vault_entry
 from database import init_db
 
 init_db()  
@@ -107,3 +107,14 @@ def api_vault_get():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route('/delete_credential/<int:entry_id>', methods=['POST'])
+def delete_credential(entry_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    user_id = session['user_id']
+    delete_vault_entry(entry_id, user_id)
+    
+    flash("Credential deleted successfully!", "success")
+    return redirect(url_for('dashboard'))

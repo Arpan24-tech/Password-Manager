@@ -239,3 +239,17 @@ td {
     text-align: center;
     color: #94a3b8;
 }
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+    background-color: #bd2130;
+}
