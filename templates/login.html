@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-card">
+        <h2>🔓 Unlock Your Vault</h2>
+        <p class="subtitle">Enter your master credentials to access stored passwords.</p>
+
+        <form id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="master-pass">Master Password</label>
+                <input type="password" id="master-pass" placeholder="Enter master password" required>
+            </div>
+
+            <button type="submit" class="btn-primary">Log In</button>
+        </form>
+
+        <div id="message" class="message-box"></div>
+
+        <p class="auth-footer">
+            Don't have a vault yet? <a href="{{ url_for('register_page') }}">Register here</a>
+        </p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

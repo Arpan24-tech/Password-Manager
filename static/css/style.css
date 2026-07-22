@@ -1,0 +1,241 @@
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Authentication Cards (Login & Register) */
+.auth-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    margin-top: 5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+.auth-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: #38bdf8;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.875rem;
+    color: #cbd5e1;
+    margin-bottom: 0.4rem;
+}
+
+.form-group input {
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #38bdf8;
+}
+
+/* Buttons */
+.btn-primary {
+    width: 100%;
+    background-color: #0284c7;
+    color: white;
+    border: none;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #0369a1;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: #94a3b8;
+}
+
+.auth-footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Dashboard Navigation */
+.navbar {
+    width: 100%;
+    background-color: #1e293b;
+    border-bottom: 1px solid #334155;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h2 {
+    color: #38bdf8;
+    font-size: 1.4rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-logout {
+    background-color: #ef4444;
+    color: white;
+    text-decoration: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #dc2626;
+}
+
+/* Dashboard Layout */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+
+.card h3 {
+    margin-bottom: 1.25rem;
+    color: #f1f5f9;
+    font-size: 1.2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+/* Table Styling */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+th, td {
+    padding: 0.85rem;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+}
+
+th {
+    background-color: #0f172a;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+td {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+}
+
+.btn-action {
+    background-color: #334155;
+    color: #38bdf8;
+    border: 1px solid #475569;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.btn-action:hover {
+    background-color: #475569;
+}
+
+/* Alert Messages */
+.message-box {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    display: none;
+    text-align: center;
+}
+
+.message-box.error {
+    display: block;
+    background-color: #451a1a;
+    color: #fca5a5;
+    border: 1px solid #7f1d1d;
+}
+
+.message-box.success {
+    display: block;
+    background-color: #064e3b;
+    color: #6ee7b7;
+    border: 1px solid #047857;
+}
+
+.text-center {
+    text-align: center;
+    color: #94a3b8;
+}

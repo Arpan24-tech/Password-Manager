@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-card">
+        <h2>🔐 Create Vault Account</h2>
+        <p class="subtitle">Set up your master account to store credentials securely.</p>
+
+        <form id="register-form" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Choose a username" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="master-pass">Master Password</label>
+                <input type="password" id="master-pass" placeholder="Enter master password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-pass">Confirm Master Password</label>
+                <input type="password" id="confirm-pass" placeholder="Confirm master password" required>
+            </div>
+
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+
+        <div id="message" class="message-box"></div>
+
+        <p class="auth-footer">
+            Already have a vault? <a href="{{ url_for('login_page') }}">Log in here</a>
+        </p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

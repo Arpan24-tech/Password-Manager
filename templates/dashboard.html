@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault Dashboard - Password Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <h2>🛡️ Vault Manager</h2>
+        </div>
+        <div class="user-info">
+            <span>Welcome, <strong>{{ username }}</strong></span>
+            <a href="/logout" class="btn-logout">Logout</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Add New Entry Card -->
+        <section class="card">
+            <h3>Add New Credential</h3>
+            <form id="vault-form" onsubmit="handleAddEntry(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="service">Website / Service</label>
+                        <input type="text" id="service" placeholder="e.g., GitHub, Google" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="vault-user">Username / Email</label>
+                        <input type="text" id="vault-user" placeholder="e.g., user@example.com" required autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="vault-pass">Password</label>
+                        <input type="password" id="vault-pass" placeholder="Enter password" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Save Credential</button>
+            </form>
+            <div id="vault-message" class="message-box"></div>
+        </section>
+
+        <!-- Stored Entries Display Section -->
+        <section class="card">
+            <h3>Stored Credentials</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vault-table-body">
+                        <tr>
+                            <td colspan="4" class="text-center">Loading vault entries...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
