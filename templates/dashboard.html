@@ -13,7 +13,7 @@
         </div>
         <div class="user-menu">
             <span>Welcome, <strong>{{ username if username else 'User' }}</strong></span>
-            <a href="/logout" class="btn-logout">Logout</a>
+            <a href="{{ url_for('logout') }}" class="btn-logout">Logout</a>
         </div>
     </header>
 
