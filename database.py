@@ -106,3 +106,24 @@ def get_vault_entries(user_id, master_password, salt):
             continue  # Handles decryption errors if key fails
 
     return decrypted_entries
+def init_db():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id SERIAL PRIMARY KEY,
+            username VARCHAR(100) UNIQUE NOT NULL,
+            password_hash TEXT NOT NULL,
+            salt BYTEA NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS user_vaults (
+            id SERIAL PRIMARY KEY,
+            user_id INT REFERENCES users(id) ON DELETE CASCADE,
+            service VARCHAR(100) NOT NULL,
+            username VARCHAR(100) NOT NULL,
+            encrypted_password BYTEA NOT NULL
+        );
+    """)
+    conn.commit()
+    cur.close()
+    conn.close()

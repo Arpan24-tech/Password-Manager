@@ -2,6 +2,9 @@ import os
 from flask import Flask, render_template, request, jsonify, session, redirect, url_for
 from dotenv import load_dotenv
 from database import register_user, verify_user, add_vault_entry, get_vault_entries
+from database import init_db
+
+init_db()  
 
 load_dotenv()
 
