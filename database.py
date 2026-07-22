@@ -10,26 +10,22 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 load_dotenv()
 
 # --- Database Connection ---
+DATABASE_URL = os.getenv("DATABASE_URL") 
+
 def get_db_connection():
-    return psycopg2.connect(
-        host=os.getenv("DB_HOST"),
-        port=os.getenv("DB_PORT"),
-        dbname=os.getenv("DB_NAME"),
-        user=os.getenv("DB_USER"),
-        password=os.getenv("DB_PASSWORD")
-    )
-
-# --- Cryptography Helpers ---
-def derive_key(master_password: str, salt: bytes) -> bytes:
-    """Derives a Fernet-compatible key using PBKDF2HMAC."""
-    kdf = PBKDF2HMAC(
-        algorithm=hashes.SHA256(),
-        length=32,
-        salt=salt,
-        iterations=400_000,
-    )
-    return base64.urlsafe_b64encode(kdf.derive(master_password.encode()))
-
+    if DATABASE_URL:
+        # Runs on Render (Cloud DB)
+        url = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+        return psycopg2.connect(url)
+    else:
+        # Runs on your local machine
+        return psycopg2.connect(
+            host=os.getenv("DB_HOST", "localhost"),
+            port=os.getenv("DB_PORT", "5432"),
+            dbname=os.getenv("DB_NAME"),
+            user=os.getenv("DB_USER"),
+            password=os.getenv("DB_PASSWORD")
+        )
 # --- User Authentication ---
 def register_user(username, master_password):
     conn = get_db_connection()
