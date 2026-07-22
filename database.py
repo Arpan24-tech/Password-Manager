@@ -138,3 +138,25 @@ def init_db():
     conn.commit()
     cur.close()
     conn.close()
+# --- Delete Vault Entry ---
+def delete_vault_entry(entry_id, user_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    # Ensure user_id matches so users can only delete their own entries
+    cur.execute(
+        "DELETE FROM user_vaults WHERE id = %s AND user_id = %s",
+        (entry_id, user_id)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+def delete_vault_entry(entry_id, user_id):
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute(
+        "DELETE FROM user_vaults WHERE id = %s AND user_id = %s",
+        (entry_id, user_id)
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
