@@ -1,11 +1,22 @@
 import os
 import base64
 import psycopg2
+import psycopg2.extras
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
+def derive_key(master_password: str, salt: bytes) -> bytes:
+    """Derives a 32-byte url-safe base64 key from master password and salt."""
+    kdf = PBKDF2HMAC(
+        algorithm=hashes.SHA256(),
+        length=32,
+        salt=salt,
+        iterations=100_000,
+    )
+    return base64.urlsafe_b64encode(kdf.derive(master_password.encode()))
 
 load_dotenv()
 
@@ -65,7 +76,7 @@ def verify_user(username, master_password):
 
 # --- Vault Operations ---
 def add_vault_entry(user_id, master_password, salt, service, username, password):
-    key = derive_key(master_password, salt)
+    key = derive_key(master_password, bytes(salt))
     fernet = Fernet(key)
     encrypted_pass = fernet.encrypt(password.encode())
 
@@ -79,7 +90,7 @@ def add_vault_entry(user_id, master_password, salt, service, username, password)
     conn.close()
 
 def get_vault_entries(user_id, master_password, salt):
-    key = derive_key(master_password, salt)
+    key = derive_key(master_password, bytes(salt))
     fernet = Fernet(key)
 
     conn = get_db_connection()
