@@ -58,7 +58,7 @@ Git installed
 ```
 1. Clone the Repository
 ```Bash
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+git clone https://github.com/Arpan24-tech/Password-Manager.git
 cd your-repo-name
 ```
 2. Create and Activate a Virtual Environment
@@ -84,5 +84,6 @@ DATABASE_URL=sqlite:///app.db
 ```
 5. Run the Application
 ```Bash
-python app.py```
+python app.py
+```
 Open your browser and navigate to http://127.0.0.1:5000.
