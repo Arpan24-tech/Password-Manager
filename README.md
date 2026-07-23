@@ -59,7 +59,7 @@ Git installed
 1. Clone the Repository
 ```Bash
 git clone https://github.com/Arpan24-tech/Password-Manager.git
-cd your-repo-name
+cd Password-Manager
 ```
 2. Create and Activate a Virtual Environment
 Windows:
